@@ -10,16 +10,16 @@ Lab dùng lại code của case study **quản lý thư viện** mà nhóm trìn
 java -version
 ```
 
-1. Trên GitHub, bấm **Use this template → Create a new repository** để tạo repo của riêng bạn. Đặt repo ở chế độ **Public** để nhóm chấm được.
-2. Clone repo vừa tạo về máy:
+1. Clone repo về máy:
    ```bash
-   git clone https://github.com/<tai-khoan-cua-ban>/<ten-repo>.git
-   cd <ten-repo>
+   git clone https://github.com/tzin1401/seminar-lab-nhom09.git
+   cd seminar-lab-nhom09
    ```
-3. Chạy thử:
+2. Chạy thử:
    ```bash
    ./mvnw clean verify
    ```
+
    Trên Windows (cmd/PowerShell), thay `./mvnw` bằng `mvnw.cmd` ở mọi lệnh.
 
 Lần chạy đầu Maven sẽ tải thư viện về, mất 1–2 phút. Kết quả phải là **`BUILD FAILURE`**: điều này là bình thường, vì lab cố ý bắt đầu ở trạng thái đỏ.
@@ -27,19 +27,20 @@ Lần chạy đầu Maven sẽ tải thư viện về, mất 1–2 phút. Kết 
 ## Đặc tả nghiệp vụ
 
 **Tính phí trả trễ** (`FineCalculator`):
+
 - Hạng NORMAL: 2.000đ cho mỗi ngày trễ, không có ngày ân hạn.
 - Hạng VIP: được ân hạn 2 ngày đầu (không tính phí), từ ngày thứ 3 tính 1.000đ/ngày.
 - Phí tối đa là **50.000đ**, dù trễ bao nhiêu ngày.
 
 **Mượn sách** (`LoanService.borrow`): hệ thống kiểm tra theo thứ tự sau, gặp điều kiện nào không thỏa thì ném `LoanException` với mã tương ứng:
 
-| # | Điều kiện | Mã lỗi khi vi phạm |
-|---|---|---|
-| 1 | Sách phải tồn tại | `BOOK_NOT_FOUND` |
-| 2 | Sách phải còn trên kệ | `BOOK_UNAVAILABLE` |
-| 3 | Thành viên phải tồn tại | `MEMBER_NOT_FOUND` |
-| 4 | Mỗi thành viên được mượn **tối đa 3 cuốn**: đang mượn 3 cuốn thì không được mượn thêm | `LIMIT_REACHED` |
-| 5 | Thành viên không được còn nợ phí | `UNPAID_FINE` |
+| # | Điều kiện                                                                                                       | Mã lỗi khi vi phạm |
+| - | ------------------------------------------------------------------------------------------------------------------ | --------------------- |
+| 1 | Sách phải tồn tại                                                                                              | `BOOK_NOT_FOUND`    |
+| 2 | Sách phải còn trên kệ                                                                                         | `BOOK_UNAVAILABLE`  |
+| 3 | Thành viên phải tồn tại                                                                                       | `MEMBER_NOT_FOUND`  |
+| 4 | Mỗi thành viên được mượn **tối đa 3 cuốn**: đang mượn 3 cuốn thì không được mượn thêm | `LIMIT_REACHED`     |
+| 5 | Thành viên không được còn nợ phí                                                                          | `UNPAID_FINE`       |
 
 Qua hết 5 bước thì hệ thống lưu phiếu mượn và đánh dấu sách là đã được mượn.
 
@@ -90,14 +91,20 @@ Mở `target/pit-reports/index.html` → `LoanService.java`. Dòng nào **đỏ*
 
 ## Nộp bài
 
-1. Điền file `REPORT.md` (đã có sẵn khung trong repo).
-2. Commit và push lên repo của bạn:
-   ```bash
-   git add -A
-   git commit -m "Hoàn thành lab"
-   git push
-   ```
-3. Mở tab **Actions** trên GitHub, kiểm tra lần chạy mới nhất có dấu ✅.
-4. Nộp link repo qua form của nhóm.
+Chỉ nộp **file báo cáo**, không cần push code hay nộp link repo.
 
-**Chấm điểm (10đ):** Bài 1 được 3đ, 2a được 3đ, 2b (tìm và sửa được lỗi) được 3đ, CI xanh được 1đ.
+**Quy tắc đặt tên:** `StudentID_ExerciseID.zip`, trong đó `ExerciseID` là **`UnitTesting`**. Ví dụ MSSV `23120001` thì nộp file `23120001_UnitTesting.zip`.
+
+1. Điền đầy đủ file `REPORT.md`. Ở phần 2b, **dán luôn đoạn test và dòng code bạn đã sửa**, vì nhóm chỉ chấm qua báo cáo.
+2. Đổi tên `REPORT.md` thành `<MSSV>_UnitTesting.md`, ví dụ `23120001_UnitTesting.md`. Có thể đổi tên trong VS Code: chuột phải vào file → Rename.
+3. Nén file đó thành `<MSSV>_UnitTesting.zip`:
+   ```bash
+   # macOS / Linux
+   zip 23120001_UnitTesting.zip 23120001_UnitTesting.md
+   # Windows (PowerShell)
+   Compress-Archive 23120001_UnitTesting.md 23120001_UnitTesting.zip
+   ```
+   Hoặc chuột phải vào file → Compress (macOS) / Send to → Compressed (zipped) folder (Windows), rồi đổi tên file zip cho đúng quy tắc.
+4. Nộp file `<MSSV>_UnitTesting.zip`.
+
+**Chấm điểm (10đ):** Bài 1 được 3đ, 2a được 3đ, 2b (tìm và sửa được lỗi) được 3đ, câu hỏi tổng kết được 1đ.
