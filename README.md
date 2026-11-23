@@ -20,6 +20,7 @@ java -version
    ```bash
    ./mvnw clean verify
    ```
+
    Trên Windows (cmd/PowerShell), thay `./mvnw` bằng `mvnw.cmd` ở mọi lệnh.
 
 Lần chạy đầu Maven sẽ tải thư viện về, mất 1–2 phút. Kết quả phải là **`BUILD FAILURE`**: điều này là bình thường, vì lab cố ý bắt đầu ở trạng thái đỏ.
@@ -27,19 +28,20 @@ Lần chạy đầu Maven sẽ tải thư viện về, mất 1–2 phút. Kết 
 ## Đặc tả nghiệp vụ
 
 **Tính phí trả trễ** (`FineCalculator`):
+
 - Hạng NORMAL: 2.000đ cho mỗi ngày trễ, không có ngày ân hạn.
 - Hạng VIP: được ân hạn 2 ngày đầu (không tính phí), từ ngày thứ 3 tính 1.000đ/ngày.
 - Phí tối đa là **50.000đ**, dù trễ bao nhiêu ngày.
 
 **Mượn sách** (`LoanService.borrow`): hệ thống kiểm tra theo thứ tự sau, gặp điều kiện nào không thỏa thì ném `LoanException` với mã tương ứng:
 
-| # | Điều kiện | Mã lỗi khi vi phạm |
-|---|---|---|
-| 1 | Sách phải tồn tại | `BOOK_NOT_FOUND` |
-| 2 | Sách phải còn trên kệ | `BOOK_UNAVAILABLE` |
-| 3 | Thành viên phải tồn tại | `MEMBER_NOT_FOUND` |
-| 4 | Mỗi thành viên được mượn **tối đa 3 cuốn**: đang mượn 3 cuốn thì không được mượn thêm | `LIMIT_REACHED` |
-| 5 | Thành viên không được còn nợ phí | `UNPAID_FINE` |
+| # | Điều kiện                                                                                                       | Mã lỗi khi vi phạm |
+| - | ------------------------------------------------------------------------------------------------------------------ | --------------------- |
+| 1 | Sách phải tồn tại                                                                                              | `BOOK_NOT_FOUND`    |
+| 2 | Sách phải còn trên kệ                                                                                         | `BOOK_UNAVAILABLE`  |
+| 3 | Thành viên phải tồn tại                                                                                       | `MEMBER_NOT_FOUND`  |
+| 4 | Mỗi thành viên được mượn **tối đa 3 cuốn**: đang mượn 3 cuốn thì không được mượn thêm | `LIMIT_REACHED`     |
+| 5 | Thành viên không được còn nợ phí                                                                          | `UNPAID_FINE`       |
 
 Qua hết 5 bước thì hệ thống lưu phiếu mượn và đánh dấu sách là đã được mượn.
 
@@ -90,7 +92,11 @@ Mở `target/pit-reports/index.html` → `LoanService.java`. Dòng nào **đỏ*
 
 ## Nộp bài
 
-1. Điền file `REPORT.md` (đã có sẵn khung trong repo).
+1. Điền file `REPORT.md` (đã có sẵn khung trong repo), rồi **đổi tên file thành `<MSSV>.md`**, ví dụ `23120001.md`:
+   ```bash
+   git mv REPORT.md <MSSV>.md
+   ```
+   Trên Windows, lệnh này dùng giống hệt. Cũng có thể đổi tên trong VS Code (chuột phải vào file → Rename).
 2. Commit và push lên repo của bạn:
    ```bash
    git add -A
