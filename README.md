@@ -92,11 +92,19 @@ Mở `target/pit-reports/index.html` → `LoanService.java`. Dòng nào **đỏ*
 
 ## Nộp bài
 
-1. Điền file `REPORT.md` (đã có sẵn khung trong repo), rồi **đổi tên file thành `<MSSV>.md`**, ví dụ `23120001.md`:
+1. Điền file `REPORT.md` (đã có sẵn khung trong repo), rồi **đổi tên file thành `<MSSV>_UnitTest-Coverage-CICD.md`**, ví dụ `23120001_UnitTest-Coverage-CICD.md`:
    ```bash
-   git mv REPORT.md <MSSV>.md
+   git mv REPORT.md 23120001_UnitTest-Coverage-CICD.md
    ```
    Trên Windows, lệnh này dùng giống hệt. Cũng có thể đổi tên trong VS Code (chuột phải vào file → Rename).
+   Sau đó **nén riêng file báo cáo** thành `<MSSV>.zip`, ví dụ `23120001.zip`:
+   ```bash
+   # macOS / Linux
+   zip 23120001.zip 23120001_UnitTest-Coverage-CICD.md
+   # Windows (PowerShell)
+   Compress-Archive 23120001_UnitTest-Coverage-CICD.md 23120001.zip
+   ```
+   Hoặc chuột phải vào file → Compress / Send to → Compressed (zipped) folder, rồi đổi tên thành `<MSSV>.zip`. File zip không cần commit.
 2. Commit và push lên repo của bạn:
    ```bash
    git add -A
@@ -104,6 +112,6 @@ Mở `target/pit-reports/index.html` → `LoanService.java`. Dòng nào **đỏ*
    git push
    ```
 3. Mở tab **Actions** trên GitHub, kiểm tra lần chạy mới nhất có dấu ✅.
-4. Nộp link repo qua form của nhóm.
+4. Nộp qua form của nhóm: **link repo** và file **`<MSSV>.zip`**.
 
 **Chấm điểm (10đ):** Bài 1 được 3đ, 2a được 3đ, 2b (tìm và sửa được lỗi) được 3đ, CI xanh được 1đ.
